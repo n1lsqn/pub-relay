@@ -221,7 +221,8 @@ class PubRelay::SubscriptionManager
       type:      "Announce",
       actor:     route_url("/actor"),
       object:    announce.object,
-      to:        [Activity::PUBLIC_COLLECTION],
+      to:        [route_url("/actor/followers")],
+      # to:        [Activity::PUBLIC_COLLECTION],
       published: Time.utc,
     }
 
