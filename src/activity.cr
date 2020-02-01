@@ -63,8 +63,8 @@ class PubRelay::Activity
 
   def valid_for_rebroadcast?
     addressed_to_public? && (
-      types.any? { |type| FORWARD_TYPES.includes? type } ||
-        signature_present? && types.any? { |type| RELAY_TYPES.includes? type }
+      types.any? { |type| FORWARD_TYPES.includes? type } || false
+        # signature_present? && types.any? { |type| RELAY_TYPES.includes? type }
     )
   end
 
