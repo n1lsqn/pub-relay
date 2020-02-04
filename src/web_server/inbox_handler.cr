@@ -17,6 +17,7 @@ class PubRelay::WebServer::InboxHandler
     request_body, actor_from_signature = http_signature.verify_signature
 
     # TODO: handle blocks
+    pp request_body
 
     begin
       activity = Activity.from_json(request_body)
@@ -45,7 +46,7 @@ class PubRelay::WebServer::InboxHandler
     inbox_url = URI.parse(actor.inbox_url) rescue nil
     error(400, "Inbox URL was not a valid URL") unless inbox_url
 
-    if actor.pleroma_relay?
+    if actor.pleroma_relay? && activity.to.includes? route_url("/actor")
       @subscription_manager.send(
         SubscriptionManager::FollowSent.new(
           domain: actor.domain,
