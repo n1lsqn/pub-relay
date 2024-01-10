@@ -22,8 +22,8 @@ services:
     depends_on:
       - redis
     volumes:
-      - ./.env:/relay/.env:ro
-      - ./actor.pem:/relay/actor.pem:ro
+      - ./.env:/relay/.env
+      - ./actor.pem:/relay/actor.pem
 
 networks:
   external_network:
